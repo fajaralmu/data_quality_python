@@ -79,3 +79,16 @@ df_load = df_load.mask(more_than, maximum, axis=1)
 df_load = df_load.mask(lower_than, minimum, axis=1)
 print('\nPersebaran data setelah ditangani Outlier: ')
 print(df_load[['tenure','MonthlyCharges','TotalCharges']].describe())
+
+#------------------- NILAI TIDAK STANDAR
+#Loop
+for col_name in list(['gender','SeniorCitizen','Partner','Dependents','PhoneService','MultipleLines','InternetService','OnlineSecurity','OnlineBackup','DeviceProtection','TechSupport','StreamingTV','StreamingMovies','Contract','PaperlessBilling','PaymentMethod','Churn']):
+    print('\nUnique Values Count \033[1m' + 'Before Standardized \033[0m Variable',col_name)
+    print(df_load[col_name].value_counts())
+#------------------ STANDARISASI KATEGORIK
+df_load = df_load.replace(['Wanita','Laki-Laki','Churn','Iya'],['Female','Male','Yes','Yes'])
+
+for col_name in list(['gender','Dependents','Churn']):
+    print('\nUnique Values Count \033[1m' + 'After Standardized \033[0mVariable',col_name)
+    print(df_load[col_name].value_counts())
+
